@@ -1,0 +1,24 @@
+class Solution:
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        res = ''
+        if numRows == 1:
+            return s
+        col = [None] * (numRows)
+        for i in range(numRows):
+            col[i] = ''
+        for i in range(len(s)):
+            line_num = i % (2 * numRows - 2)
+            if line_num >= numRows:
+                col[2 * numRows - 2 - line_num] += s[i]
+            else:
+                col[line_num] += s[i]
+        for i in range(numRows):
+            res += col[i]
+        return res
+s = Solution()
+print(s.convert('PAYPALISHIRING', 4))
