@@ -1,0 +1,25 @@
+class Solution:
+    def firstMissingPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.append(0)
+        # if nums == [1]:
+        #     return 2
+        n = len(nums)
+        for i in range(n):
+            if nums[i] < 0 or nums[i] >= n:
+                nums[i] = 0
+        print(nums)
+        for i in range(n):
+            nums[nums[i] % n] += n
+        print(nums)
+        for i in range(n):
+            if nums[i] // n == 0:
+                return i
+        return n
+        
+
+s = Solution()
+print(s.firstMissingPositive([2, 3]))
