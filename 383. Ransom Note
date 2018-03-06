@@ -1,0 +1,31 @@
+class Solution:
+    def canConstruct(self, ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        # print(ransomNote, magazine)
+        dic_ran = {}
+        dic_mag = {}
+        for i in range(len(ransomNote)):
+            if ransomNote[i] in dic_ran:
+                dic_ran[ransomNote[i]] += 1
+            else:
+                dic_ran[ransomNote[i]] = 1
+        for j in range(len(magazine)):
+            if magazine[j] in dic_mag:
+                dic_mag[magazine[j]] += 1
+            else:
+                dic_mag[magazine[j]] = 1
+        # print(dic_ran)
+        # print(dic_mag)
+        res = True
+        position = 0
+        for item in dic_ran.keys():
+            if item not in dic_mag or dic_ran[item] > dic_mag[item]:
+                return False
+        return True
+
+s = Solution()
+print(s.canConstruct('', 's'))
