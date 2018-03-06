@@ -1,0 +1,21 @@
+class Solution:
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        vowels = 'aeiouAEIOU'
+        first = 0
+        last = len(s) - 1
+        while first < last:
+            if s[first] not in vowels:
+                first += 1
+            if s[last] not in vowels:
+                last -= 1
+            if first < last and s[last] in vowels and s[first] in vowels:
+                s = s[:first] + s[last] + s[first + 1:last] + s[first] + s[last + 1:]
+                first += 1
+                last -= 1
+        return s
+s = Solution()
+print(s.reverseVowels('aA'))
