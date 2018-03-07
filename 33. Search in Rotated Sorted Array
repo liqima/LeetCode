@@ -1,0 +1,44 @@
+class Solution:
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        outer = False
+        for i in range(len(nums)):
+            if i > 0 and nums[i] < nums[i - 1]:
+                step = i
+                outer = True
+                break
+        if outer:
+            new_nums = []
+            for i in range(len(nums)):
+                temp = i + step
+                if temp >= len(nums):
+                    temp -= len(nums) 
+                new_nums.append(nums[temp])
+            nums = new_nums
+        else:
+            step = 0
+        print(nums, step)
+        first, last = 0, len(nums) - 1
+        found = False
+        while first <= last and not found:
+            middle = (first + last) // 2
+            print(nums[middle], middle)
+            if nums[middle] == target:
+                res = middle
+                found = True
+            elif nums[middle] > target:
+                last = middle - 1
+            else:
+                first = middle + 1
+        if not found:
+            return -1
+        res += step
+        if res >= len(nums):
+            res -= len(nums)
+        return res
+s = Solution()
+print(s.search([3, 1], 3))
