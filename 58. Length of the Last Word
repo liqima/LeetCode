@@ -1,0 +1,16 @@
+class Solution:
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        s = s.strip()
+        if s == '':
+            return 0
+        position = len(s) - 1
+        while s[position] != ' ' and position >= 0:
+            position -= 1
+        return len(s) - 1 - position
+
+s = Solution()
+print(s.lengthOfLastWord('e'))
