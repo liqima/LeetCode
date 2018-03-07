@@ -1,0 +1,55 @@
+class Solution:
+    def compareVersion(self, version1, version2):
+        """
+        :type version1: str
+        :type version2: str
+        :rtype: int
+        """
+        version1_int = self.trans(version1)
+        version2_int = self.trans(version2)
+        # print(version1_int, version2_int)
+
+        location = 0
+        while location < len(version1_int) and location < len(version2_int):
+            if version1_int[location] > version2_int[location]:
+                return 1
+            elif version1_int[location] < version2_int[location]:
+                return -1
+            else:
+                location += 1
+        while location < len(version1_int):
+            if version1_int[location] != 0:
+                return 1
+            else:
+                location += 1
+        while location < len(version2_int):
+            if version2_int[location] != 0:
+                return -1
+            else:
+                location += 1
+        return 0
+
+    def trans(self, version):
+        found = False
+        temp_res = []
+        position = 0
+        form = 0
+        while position < len(version):
+            if version[position] == '.':
+                temp_res.append(int(version[form:position]))
+                found = True
+                position += 1
+                form = position
+            else:
+                position += 1
+        if form != len(version):
+            temp_res.append(int(version[form:]))
+        if not found:
+            temp_res = [int(version)]
+        return temp_res
+
+
+   
+
+s = Solution()
+print(s.compareVersion('1.0.1', '1'))
