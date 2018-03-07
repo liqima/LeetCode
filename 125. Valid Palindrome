@@ -1,0 +1,27 @@
+class Solution:
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        new_s = ''
+        for i in range(len(s)):
+            if s[i] in 'abcdefghijklmnopqrstuvwxyz' \
+            or s[i] in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' \
+            or s[i] in '0123456789':
+                new_s += s[i]
+        new_s = new_s.lower()
+
+        first = 0
+        last = len(new_s) - 1
+        while first < last:
+            if new_s[first] != new_s[last]:
+                return False
+            else:
+                first += 1
+                last -= 1
+        return True
+
+ 
+s = Solution()
+print(s.isPalindrome('0p'))
