@@ -1,0 +1,45 @@
+class Solution:
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: bool
+        """
+        if nums == []:
+            return False
+        length = len(nums)
+        rotated = False
+        step = 0
+        for i in range(length):
+            if i > 0 and nums[i] < nums[i - 1]:
+                step = i
+                rotated = True
+                break
+        if rotated:
+            left = i
+            right = length + i - 1
+            
+        else:
+            left = 0 
+            right = len(nums) - 1
+        # print(step, left, right)
+        while left <= right:
+            mid = (left + right) // 2
+            ro_mid = self.rotated(mid, length)
+            # print(nums[ro_mid])
+            if nums[ro_mid] == target:
+                return True
+            elif nums[ro_mid] > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return False
+        
+    def rotated(self, num, length):
+        if num >=length:
+            return num - length
+        else:
+            return num
+
+s = Solution()
+print(s.search([1, 2, 3], 3))
