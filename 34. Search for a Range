@@ -1,0 +1,45 @@
+class Solution:
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        index = []
+
+        # left element position
+        left = 0
+        right = len(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                right = mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        if left != len(nums) and nums[left] == target:
+            index.append(left)
+        else:
+            index.append(-1)
+            index.append(-1)
+            return index
+        # print('left',left)
+        # right element position
+        position = left + 1
+        if position == len(nums):
+            index.append(left)
+            return index
+        while position < len(nums):
+            # print(position)
+            if nums[position] == target:
+                position += 1
+            else:
+                index.append(position - 1)
+                return index
+        if position == len(nums):
+            index.append(position - 1)
+            return index
+
+s = Solution()
+print(s.searchRange([8], 6))
