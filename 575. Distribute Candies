@@ -1,0 +1,17 @@
+class Solution:
+    def distributeCandies(self, candies):
+        """
+        :type candies: List[int]
+        :rtype: int
+        """
+        kinds_num = len(set(candies))
+        sis_num = len(candies) // 2
+        # print(kinds_num, sis_num)
+        if kinds_num >= sis_num:
+            return sis_num
+        else:
+            return kinds_num
+
+        
+s = Solution()
+print(s.distributeCandies([1, 1, 2, 2, 3, 3]))
