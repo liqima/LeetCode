@@ -1,0 +1,36 @@
+class Solution:
+    def repeatedSubstringPattern(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        # s = s.split('s[0]')
+        position = 1
+        step = []
+        while 2 * position <= len(s):
+            if s[:position] == s[position:2 * position]:
+                step.append(position)
+                position += 1
+                # print(s[:step])
+            else:
+                position += 1
+        if len(step) == 0:
+            return False
+        repeat = False
+        step_position = 0
+        while not repeat and step_position < len(step):
+            position = step[step_position]
+            while position + step[step_position] <= len(s):
+                # print(s[position:step + position])
+                if s[position:step[step_position] + position] == s[:step[step_position]]:
+                    position += step[step_position]
+                else:
+                    break
+                # print(position)
+            if position == len(s):
+                repeat = True
+            step_position += 1
+        return repeat
+        
+intance = Solution()
+print(intance.repeatedSubstringPattern('abaababaab'))
