@@ -1,0 +1,26 @@
+class Solution:
+    def findRelativeRanks(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        relative_rank = sorted(nums, reverse = True)
+        # print(relative_rank)
+        res = []
+        position = 0
+        while position < len(nums):
+            target = nums[position]
+            re_rank = relative_rank.index(target)
+            if re_rank == 0:
+                res.append('Gold Medal')
+            elif re_rank == 1:
+                res.append('Silver Medal')
+            elif re_rank == 2:
+                res.append('Bronze Medal')
+            else:
+                res.append(str(re_rank + 1))
+            position += 1
+        return res
+
+instance = Solution()
+print(instance.findRelativeRanks([1, 2, 3, 4, 5]))
