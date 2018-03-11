@@ -1,0 +1,15 @@
+class Solution:
+    def rotateString(self, A, B):
+        """
+        :type A: str
+        :type B: str
+        :rtype: bool
+        """
+        step = 0
+        found = False
+        while step < len(A) and not found:
+            if A[step:] + A[:step] == B:
+                found = True
+            else:
+                step += 1
+        return found
