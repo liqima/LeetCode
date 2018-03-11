@@ -1,0 +1,24 @@
+class Solution:
+    def customSortString(self, S, T):
+        """
+        :type S: str
+        :type T: str
+        :rtype: str
+        """
+        my_dict = {}
+        back_part = ''
+        for i in range(len(S)):
+            my_dict[S[i]] = 0
+        
+        for j in range(len(T)):
+            if T[j] in my_dict.keys():
+                my_dict[T[j]] += 1
+            else:
+                back_part += T[j]
+        res = ''
+        for i in range(len(S)):
+            for j in range((my_dict[S[i]])):
+                res += S[i] 
+        res += back_part
+        return res
+        
