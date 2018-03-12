@@ -1,0 +1,11 @@
+class Solution:
+    def arrangeCoins(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        import math
+        derta = 8 * n + 1
+        derta_sqrt = math.sqrt(derta)
+        res = (derta_sqrt - 1) // 2
+        return int(res)
