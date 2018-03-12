@@ -1,0 +1,33 @@
+class Solution:
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if not matrix or target is None:
+            return False
+        height, width = len(matrix), len(matrix[0])
+        left, right = 0, height * width - 1
+        found = False
+        while left <= right and not found:
+            mid = (left + right) // 2
+            current_value = matrix[mid // width][mid % width]
+            if current_value == target:
+                found = True
+            elif current_value > target:
+                right = mid - 1
+            else:
+                left = left + 1
+        return found
+
+instance = Solution()
+a_list = [[-10,-10],
+        [-9,-9],
+        [-8,-6],
+        [-4,-2],
+        [0,1],
+        [3,3],
+        [5,5],
+        [6,8]]
+print(instance.searchMatrix(a_list, 0))
