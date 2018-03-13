@@ -1,0 +1,26 @@
+class Solution:
+    def nextGreatestLetter(self, letters, target):
+        """
+        :type letters: List[str]
+        :type target: str
+        :rtype: str
+        """
+        found = False
+        left, right = 0, len(letters) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            current_value = letters[mid]
+            if current_value > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+            # print(left, right)
+        res = right + 1
+        if res == len(letters):
+            res = 0
+        return letters[res]
+
+                
+
+instance = Solution()
+print(instance.nextGreatestLetter(["c", "f", "j"], 'k'))
