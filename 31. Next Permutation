@@ -1,0 +1,37 @@
+class Solution:
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        if nums == sorted(nums, reverse = True):
+            nums.sort()
+        else:
+            self.exchange(nums)
+        return nums
+
+    def exchange(self, nums):
+        start_point = len(nums) - 1
+        found = False
+        while not found and start_point >= 1:
+            if nums[start_point] > nums[start_point - 1]:
+                found = True
+            else:
+                start_point -= 1
+        position = start_point - 1
+        change_part = sorted(nums[position:])
+        for i in range(len(change_part)):
+            if change_part[i] > nums[position]:
+                nums[position] = change_part[i]
+                change_part.pop(i)
+                break
+        position += 1
+        # print(nums)
+        if len(change_part) >= 1:
+            for i in range(len(change_part)):
+                nums[position] = change_part[i]
+                position += 1
+        
+
+instance = Solution()
+print(instance.nextPermutation([3, 2, 1]))
