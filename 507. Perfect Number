@@ -1,0 +1,16 @@
+class Solution:
+    def checkPerfectNumber(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        if num == 0:
+            return False
+        divisor_sum = 0
+        position = 1
+        while position < num // position:
+            if num % position == 0:
+                divisor_sum = divisor_sum + position + (num // position)
+            position += 1
+        divisor_sum -= num
+        return divisor_sum == num
