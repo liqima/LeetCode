@@ -1,0 +1,32 @@
+class Solution:
+    def hitBricks(self, grid, hits):
+        """
+        :type grid: List[List[int]]
+        :type hits: List[List[int]]
+        :rtype: List[int]
+        """
+        def helper(i, j):
+            if 0 <= i < height and 0 <= j < width:
+                if temp_grid[i][j] == 1:
+                    temp_grid[i][j] = 0
+                    helper(i+1, j)
+                    helper(i, j+1)
+                    helper(i-1, j)
+                    helper(i, j-1)
+        
+        total_drop = []
+        hits_times = len(hits)
+        height, width = len(grid), len(grid[0])
+        for time in range(hits_times):
+            grid[hits[time][0]][hits[time][1]] = 0
+            temp_grid = grid
+            temp_drop = 0
+            for wide in range(width):
+                helper(0, wide)
+            for i in range(height):
+                for j in range(width):
+                    if temp_grid[i][j] == 1:
+                        temp_drop += 1
+                        grid[i][j] = 0
+            total_drop.append(temp_drop)
+        return total_drop
