@@ -1,0 +1,21 @@
+class Solution:
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        s = list(s)
+        alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        first, last = 0, len(s) - 1
+        while first < last:
+            if s[first] not in alpha:
+                first += 1
+            elif s[last] not in alpha:
+                last -= 1
+            else:
+                if s[first].lower() == s[last].lower():
+                    first += 1
+                    last -= 1
+                else:
+                    return False
+        return True
