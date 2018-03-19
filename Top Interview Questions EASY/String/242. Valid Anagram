@@ -1,0 +1,19 @@
+class Solution:
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        return sorted(s) == sorted(t)
+    
+    
+#         t = list(t)
+#         for i in range(len(s)):
+#             if s[i] in t:
+#                 t.pop(t.index(s[i]))
+#             else:
+#                 return False
+#         if len(t) == 0:
+#             return True
+#         return False
