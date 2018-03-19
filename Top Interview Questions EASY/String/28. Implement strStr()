@@ -15,3 +15,32 @@ class Solution:
             else:
                 position += 1
         return -1
+
+# solution 2
+ 
+#         if needle == '':
+#             return 0
+#         found = False
+#         position = 0
+#         while not found and position <= (len(haystack) - len(needle)):
+#             # print(position)
+#             temp_position = position
+#             have = True
+#             i = 0
+#             while i < len(needle) and have:
+#                 # print(needle[i], haystack[temp_position])
+#             # for i in range(len(needle)):
+#                 if needle[i] != haystack[temp_position]:
+#                     have = False
+#                     # print('no')
+#                 else:
+#                     # print(haystack[temp_position], needle[i])
+#                     temp_position += 1
+#                     i += 1
+#                     if i == len(needle):
+#                         found = True
+#                         return position
+#             position += 1
+#         if not found:
+#             return -1
+
