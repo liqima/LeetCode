@@ -1,0 +1,23 @@
+class Solution:
+    """
+    @param tuple: the tuple string
+    @param n: an integer
+    @return: the product of all the nth element in each array
+    """
+    def tupleMultiply(self, tuple, n):
+        # Write your code here
+        tuple_str = []
+        position = 0
+        for i in range(len(tuple)):
+            if tuple[i] == '(':
+                position = i
+            elif tuple[i] == ')':
+                tuple_str.append(tuple[position + 1:i])
+                position = i
+            else:
+                pass
+        res = 1
+        for data in tuple_str:
+            data = data.split(',')
+            res = res * int(data[n - 1])
+        return res
