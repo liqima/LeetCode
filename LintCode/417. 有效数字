@@ -1,0 +1,39 @@
+class Solution:
+    """
+    @param s: the string that represents a number
+    @return: whether the string is a valid number
+    """
+    def isNumber(self, s):
+        # write your code here
+        s = s.strip()
+        if s == '' or ' ' in s:
+            return False
+        if s[0] in '+-':
+            s = s[1:]
+        if s == '':
+            return False
+        numbers = '0123456789'
+        number_point, number_e, number_num = 0, 0, 0
+        for i in range(len(s)):
+            if s[i] in numbers:
+                number_num += 1
+            elif s[i] == '.':
+                number_point += 1
+            elif s[i] == 'e':
+                number_e += 1
+            else:
+                return False
+        if number_num == 0 or number_point >= 2:
+            return False
+        left = s[0] in numbers
+        position = 0
+        while position < len(s) and s[position] in numbers:
+            position += 1
+        if position >= len(s):
+            return True
+        else:
+            if s[position] == '.' and not left:
+                return True
+            elif s[position] == 'e' and not left:
+                return False
+        return True
