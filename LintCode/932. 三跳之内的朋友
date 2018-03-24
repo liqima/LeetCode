@@ -1,0 +1,46 @@
+class Solution:
+    """
+    @param a: The a tuple
+    @param b: The b tuple
+    @param c: the c tuple
+    @param d: the d tuple
+    @return: The answer
+    """
+    def withinThreeJumps(self, a, b, c, d):
+        # Write your code here
+        res = []
+        for i in range(len(c)):
+            current = c[i]
+            one_swap = []
+            for j in range(len(a)):
+                if a[j] == current:
+                    one_swap.append(b[j])
+            for k in range(len(b)):
+                if b[k] == current:
+                    one_swap.append(a[k])
+            one_swap = list(set(one_swap))
+        
+            # two swap friend
+            two_swap = []
+            for j1 in range(len(a)):
+                if a[j1] in one_swap:
+                    two_swap.append(b[j1])
+            for k1 in range(len(b)):
+                if b[k1] in one_swap:
+                    two_swap.append(a[k1])
+            two_swap = list(set(two_swap))
+            
+            # three swap friend
+            three_swap = []
+            for j2 in range(len(a)):
+                if a[j2] in two_swap:
+                    three_swap.append(b[j2])
+            for k2 in range(len(b)):
+                if b[k2] in two_swap:
+                    three_swap.append(a[k2])
+            three_swap = list(set(three_swap))
+            if d[i] in three_swap or d[i] in two_swap or d[i] in one_swap:
+                res.append(1)
+            else:
+                res.append(0)
+        return res
