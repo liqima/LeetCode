@@ -1,0 +1,18 @@
+class Solution:
+    """
+    @param n: the number of keys
+    @param m: the number of locks
+    @return: the numbers of open locks
+    """
+    def unlock(self, n, m):
+        # Write your code here
+        res = [0] * (m + 1)
+        for i in range(1, n + 1):
+            position = i
+            while position < m + 1:
+                if res[position] == 0:
+                    res[position] = 1
+                else:
+                    res[position] = 0
+                position += i
+        return sum(res)
