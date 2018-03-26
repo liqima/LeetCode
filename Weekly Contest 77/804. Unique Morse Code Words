@@ -1,0 +1,19 @@
+class Solution:
+    def uniqueMorseRepresentations(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        mor_dict = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.",
+                  "--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        letters = 'abcdefghijklmnopqrstuvwxyz'
+        my_dict = []
+        for word in words:
+            temp_mor = ''
+            for i in range(len(word)):
+                temp_mor += mor_dict[letters.index(word[i])]
+            if temp_mor not in my_dict:
+                my_dict.append(temp_mor)
+            else:
+                pass
+        return len(my_dict)
