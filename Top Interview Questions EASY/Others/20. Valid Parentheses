@@ -1,0 +1,22 @@
+class Solution:
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        valid = True
+        position = 0
+        stack = []
+        my_dict = {')':'(', ']':'[', '}':'{'}
+        while position < len(s) and valid:
+            if s[position] in '([{':
+                stack.append(s[position])
+            else:
+                if stack != [] and stack.pop() == my_dict[s[position]]:
+                    valid = True
+                else:
+                    valid = False
+            position += 1
+        if len(stack) != 0:
+            return False
+        return valid
