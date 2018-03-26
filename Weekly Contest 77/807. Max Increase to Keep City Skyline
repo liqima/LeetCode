@@ -1,0 +1,38 @@
+class Solution:
+    def maxIncreaseKeepingSkyline(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        height, width = len(grid), len(grid[0])
+        heng, shu = [], []
+        for i in range(height):
+            shu.append(max(grid[i]))
+        for j in range(width):
+            temp = []
+            for k in range(height):
+                temp.append(grid[k][j])
+            heng.append(max(temp))
+        # print(heng, shu)
+        max_build = max(max(heng), max(shu))
+        
+        key_row = shu.index(max_build)
+        key_column = heng.index(max_build)
+        # print(key_row, key_column)
+        inc = 0
+        for y in range(width):
+            inc = inc + heng[y] - grid[key_row][y]
+            grid[key_row][y] = heng[y]
+        for x in range(height):
+            inc = inc + shu[x] - grid[x][key_column]
+            grid[x][key_column] = shu[x]
+            # print(value, res[x][key_column])
+        for i in range(height):
+            for j in range(width):
+                if i == key_row or j == key_column:
+                    pass
+                else:
+                    temp_value = min(grid[i][key_column], grid[key_row][j])
+                    inc = inc + temp_value - grid[i][j]
+                    grid[i][j] = min(grid[i][key_column], grid[key_row][j])
+        return inc
