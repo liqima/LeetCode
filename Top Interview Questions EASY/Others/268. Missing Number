@@ -1,0 +1,15 @@
+class Solution:
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if nums == [0]:
+            return 1
+        num = max(nums)
+        num_sum = num * (num + 1) // 2
+        res = num_sum - sum(nums)
+        if res == 0 and 0 in nums:
+            return num + 1
+        else:
+            return res
