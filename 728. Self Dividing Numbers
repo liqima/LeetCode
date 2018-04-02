@@ -1,0 +1,23 @@
+class Solution:
+    def selfDividingNumbers(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: List[int]
+        """
+        res = []
+        for i in range(left, right + 1):
+            numbers = str(i)
+            did = True
+            if '0' in numbers:
+                did = False
+            else:
+                for num in numbers:
+                    if i % int(num) != 0:
+                        did = False
+                        break
+            if did:
+                res.append(i)
+        return res
+                    
+        
